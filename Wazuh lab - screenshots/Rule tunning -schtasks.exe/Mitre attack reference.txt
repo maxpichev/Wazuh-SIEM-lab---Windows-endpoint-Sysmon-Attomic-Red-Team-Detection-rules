@@ -1,0 +1,7 @@
+Mitre attack T1053 is “Scheduled Task/Job” – creating or modifying scheduled tasks for persistence or privilege escalation.
+
+.005 is the Windows Scheduled Task sub-technique.
+
+So the rule applies to:
+
+“Adversary created or modified a scheduled task via schtasks.exe.”
