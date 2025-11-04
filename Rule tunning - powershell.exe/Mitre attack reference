@@ -1,1 +1,6 @@
-Mitre 
+T1059.001
+
+T1059 - Execution 
+- Command and Scripting Interpreter
+
+.001 - Powershell 
