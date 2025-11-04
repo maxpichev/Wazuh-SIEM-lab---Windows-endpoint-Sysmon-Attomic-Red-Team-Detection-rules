@@ -1,21 +1,31 @@
 Wazuh lab: 
+
 Hardware:
+
 Virtual Box Environments (VM's):
+
 1.Ubuntu 24.04 TLS server - Wazuh SIEM stack (wazuh-manager,wazuh-indexer,wazuh-dashboard) 
+
 2.Windows 10 pro - Endpoint 
 
 Networking: 
 
 Ports - 
 1514 TCP/UDP: Agent data channel, used by agent to send logs, events, alerts,sysmon data etc.. 
+
 1515 TCP: Authentication, used only when an agent registers and gets its key.
+
 443 HTTPS: Used for data channel of the dashboard, accesing the wazuh dashboard through 
+
 the web browser (Through my windows host machine) using the IP of the server the Wazuh stack
+
 is running on. (Ubuntu 24.04 TLS).
 
 Routing:
+
 1.Network Address Translation network (NAT) 
 Used on both VM's to establish a connection to the internet. 
+
 2. VirtualBox Host-only Ethernet adapter
 Used on both VM's to assign different public IP adresses to our private ip adress to establish
 a connectiong between both VM's and make them communicate with each other on different IP's 
@@ -25,6 +35,7 @@ we assigning two different unique addresses to make them establish a connection 
 ----------------------------------------------------------------------------------------------------
 1. OSRegex engine(the syntax used in rule Engineering/tunning in Wazuh, specifically in the section of:
 <regex>....</regex> at this case for example)
+
 2. Atomic Red Team(By Red canary) - attack libary based on MITRE tactics, used for testing
    rules detection.
 3. Sysmon agent on windows endpoint for collecting and monitoring precise logs of the system. 
