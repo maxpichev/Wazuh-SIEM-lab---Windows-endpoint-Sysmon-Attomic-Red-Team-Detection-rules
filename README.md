@@ -27,8 +27,8 @@ Routing:
 Used on both VM's to establish a connection to the internet. 
 
 2. VirtualBox Host-only Ethernet adapter
-Used on both VM's to assign different public IP adresses to our private ip adress to establish
-a connectiong between both VM's and make them communicate with each other on different IP's 
+Used on both VM's to assign different public IP adresses to our private ip address to establish
+a connection between both VM's and make them communicate with each other on different IP's 
 on the same network. (they can't run together on NAT , since they got same IP. so with second adapter
 we assigning two different unique addresses to make them establish a connection between each other).
 
