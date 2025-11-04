@@ -1,6 +1,6 @@
 Wazuh lab: 
 Hardware:
-Virtual box environemtns(VM's):
+Virtual Box Environments (VM's):
 1.Ubuntu 24.04 TLS server - Wazuh SIEM stack (wazuh-manager,wazuh-indexer,wazuh-dashboard) 
 2.Windows 10 pro - Endpoint 
 
