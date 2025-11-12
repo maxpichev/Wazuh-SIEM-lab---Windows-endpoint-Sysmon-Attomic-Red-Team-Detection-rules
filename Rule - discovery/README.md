@@ -47,9 +47,9 @@ Screenshots below show both detections firing in sequence.
 
 Screenshots
 
-images/commands.png — test commands executed
+commands - for triggering the alerts.png — test commands executed
 
-images/wazuh_alerts.png — dashboard showing 900400 / 900499 correlation alerts
+Alerts - firing.png — dashboard showing 900400 / 900499 correlation alerts
 
 Next Steps
 
