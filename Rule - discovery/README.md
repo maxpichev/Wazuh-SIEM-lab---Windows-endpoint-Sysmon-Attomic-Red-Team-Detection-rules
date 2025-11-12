@@ -12,9 +12,13 @@ T1033 – System Owner / User Discovery
 Detection Logic
 Rule ID	Description	Type	Notes
 92031	Discovery activity executed	Base (Sysmon)	Default SwiftOnSecurity Sysmon rule
+
 900061	whoami.exe execution	Custom base	Extends coverage
+
 900050	PowerShell-driven account discovery	Custom base	Detects PS activity
+
 900400	Confirmed discovery: PS + spawned + executed	Correlation	3 events within 90s
+
 900499	Confirmed discovery: PS + whoami	Correlation	2 events within 120s
 Event Source
 
