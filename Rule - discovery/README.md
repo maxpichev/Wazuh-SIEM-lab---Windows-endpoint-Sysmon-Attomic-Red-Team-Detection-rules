@@ -3,13 +3,13 @@ Detection: Account Discovery via PowerShell / CMD
 Goal:
 Detect account and user discovery activity (e.g., net users, whoami) executed via PowerShell or cmd.exe using Sysmon + Wazuh correlation rules.
 
-MITRE Techniques
+MITRE Techniques:
 
 T1087 – Account Discovery
 
 T1033 – System Owner / User Discovery
 
-Detection Logic
+Detection Logic:
 
 Rule ID	Description	Type	Notes:
 
@@ -22,36 +22,31 @@ Rule ID	Description	Type	Notes:
 900400	Confirmed discovery: PS + spawned + executed	Correlation	3 events within 90s
 
 900499	Confirmed discovery: PS + whoami	Correlation	2 events within 120s
-Event Source
+
+Event Source:
 
 Sysmon Operational Channel
 
 Wazuh Manager: local.discovery ruleset
 
-Trigger Commands
+Trigger Commands:
 # Simulate discovery via PowerShell
 powershell -c "net users"
-powershell -c "whoami"
+| powershell -c "whoami"
 
 # Direct CMD tests
 cmd /c "net users"
-whoami
+| whoami
 
-Expected Results
+Expected Results:
 
 900400 fires on PowerShell-driven account discovery chains.
 
 900499 fires when whoami follows PowerShell activity within 120s.
 
-Screenshots below show both detections firing in sequence.
+The attached Screenshots show both detections firing in sequence.
 
-Screenshots
-
-commands - for triggering the alerts.png — test commands executed
-
-Alerts - firing.png — dashboard showing 900400 / 900499 correlation alerts
-
-Next Steps
+Next Steps:
 
 Add dsquery, Get-ADUser, and Get-LocalUser to broaden coverage
 
