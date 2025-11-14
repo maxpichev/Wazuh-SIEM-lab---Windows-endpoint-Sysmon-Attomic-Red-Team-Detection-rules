@@ -1,5 +1,6 @@
 This home lab focuses on learning attacker behaviour and understanding how SIEM detections work under the hood.
-The goal wasn't to build advanced detections, but to get real hands-on experience with event analysis, rule logic, and correlation
+The goal wasn't to build advanced detections, but to get real hands-on experience with event analysis, rule logic, and correlation.
+I built this laab to understand the backend logic of alerts so i can be more effective in real triage situations.
 
 
 
