@@ -1,71 +1,70 @@
-This home lab is built for one purpose:
-to understand attacker behavior and see how detections actually work behind the scenes.
+🧪 Wazuh Home Lab – SIEM Detection and Triage Practice
 
-I wasn’t trying to build a huge enterprise cluster or “advanced” detections.
-The point was to get real hands-on experience with:
+This home lab is built for one purpose: to understand attacker behavior and see how detections actually work behind the scenes.
 
-## - how Windows logs look in raw form
+I wasn’t trying to build a huge enterprise cluster or “advanced” detections. The goal was to get real hands-on experience with:
 
-## - how Sysmon reports process creation
+how Windows logs look in raw form
 
-## - how Wazuh rules trigger
+how Sysmon reports process creation
 
-## - how correlation works
+how Wazuh rules trigger
 
-## - what real alerts look like and how to triage them
+how correlation works
+
+what real alerts look like and how to triage them
 
 I wanted a clear mental model of how SIEM logic connects to the alerts a Tier-1 analyst sees.
 This lab helped me understand that end-to-end.
 
-Wazuh Lab Structure
-## Virtualization ##
+🖥️ Virtualization Setup (VirtualBox)
 
-I used VirtualBox with two VMs:
+I used two VMs:
 
-## - Ubuntu 24.04 LTS – Wazuh Stack
+1. Ubuntu 24.04 LTS – Wazuh Stack
 
-** Wazuh Manager
+Wazuh Manager
 
-** Wazuh Indexer
+Wazuh Indexer
 
-** Wazuh Dashboard
+Wazuh Dashboard
 
-## - Windows 10 Pro – Endpoint
+2. Windows 10 Pro – Endpoint
 
-** Sysmon + SwiftOnSecurity config
+Sysmon using SwiftOnSecurity config
 
-** Wazuh agent
+Wazuh agent
 
-** Test scripts, PowerShell payloads, MiniDump tests, scheduled task tests
+Test scripts (PowerShell payloads, MiniDump tests, scheduled task tests)
 
-## Networking ##
-Ports Used:
+🌐 Networking
+Ports Used
 
-** 1514/TCP & UDP – agent - manager data channel
+1514/TCP & UDP – agent → manager data channel
 
-** 1515/TCP – agent registration
+1515/TCP – agent registration
 
-** 443/HTTPS – Wazuh Dashboard (accessed from my Windows host via browser)
+443/HTTPS – dashboard access from the Windows host machine
 
-Routing Setup:
+Routing Setup
 
 Both machines use:
 
-NAT for internet access (updates, package installs, GitHub, etc.)
+NAT – for internet access
 
-Host-only adapter so the Ubuntu server and Windows endpoint have unique local IPs and can communicate directly
+Host-only adapter – gives each VM a unique local IP so they can communicate directly
 
-NAT alone gives both VMs the same outbound identity, so the second adapter is required for proper endpoint-to-SIEM communication.
+NAT gives both VMs the same outbound identity, so the second adapter is required for proper endpoint → SIEM communication.
 
-## Tools and Data Sources
-** Sysmon (SwiftOnSecurity config)
+🔍 Tools and Data Sources
+Sysmon (SwiftOnSecurity config)
 
-Sysmon provides detailed process creation logs (Event ID 1), which I use as the main data source for my custom Wazuh rules.
-The SwiftOnSecurity config filters out noise so only meaningful events appear.
+Primary log source (Event ID 1).
+The SwiftOnSecurity config reduces noise so only meaningful events appear.
 
-** Atomic Red Team (Red Canary)
+Atomic Red Team (Red Canary)
 
-I used specific Atomic tests aligned to MITRE ATT&CK techniques to trigger:
+Used specific MITRE-aligned tests to trigger detections:
 
 encoded PowerShell commands
 
@@ -77,13 +76,13 @@ credential dumping via comsvcs.dll MiniDump
 
 scheduled task persistence
 
-ATR helped validate each rule in realistic scenarios.
+ATR helps validate each rule in realistic attacker scenarios.
 
-## Goal of This Lab ##
+🎯 Goal of This Lab
 
 To build a clear understanding of:
 
-how real attacker activity looks at the event level
+what attacker activity looks like at the event level
 
 how detection rules are constructed
 
