@@ -1,0 +1,61 @@
+<group name="local.powershell_exec,windows,sysmon">
+
+  <rule id="991300" level="8">
+    <if_sid>92027</if_sid>
+    <description>[PS] Powershell spawned another Powershell instance</description>
+    <mitre><id>T1059.001</id></mitre>
+    <group>ps.base,ps.spawn</group>
+  </rule>
+
+  <rule id="991301" level="12">
+    <if_sid>92057</if_sid>
+    <description>[PS] Base64-encoded PowerShell command</description>
+    <mitre>
+      <id>T1059.001</id>
+      <id>T1059</id>
+    </mitre>
+    <group>ps.base,ps.encoded</group>
+  </rule>
+
+ <rule id="991311" level="12">
+    <if_sid>991300</if_sid>
+    <description>[PS] Encoded flag used (alias -enc)</description>
+    <field name="win.eventdata.CommandLine">-enc</field>
+    <mitre><id>T1059.001</id></mitre>
+    <group>ps.encoded.flag</group>
+  </rule>
+
+<rule id="991312" level="12">
+  <if_group>sysmon_event1</if_group>
+  <description>[PS] Encoded PowerShell launched from cmd.exe</description>
+
+  <field name="win.eventdata.Image" type="pcre2">(?i)powershell\.exe</field>
+  <field name="win.eventdata.ParentImage" type="pcre2">(?i)cmd\.exe</field>
+
+  <field name="win.eventdata.CommandLine" type="pcre2">(?i)-enc(odedcommand)?\b</field>
+
+  <mitre>
+    <id>T1059.001</id>
+  </mitre>
+
+  <group>ps.encoded.office</group>
+
+</rule>
+
+<rule id="991313" level="14">
+  <if_group>sysmon_event1</if_group>
+  <description>[PS] Suspicious encoded PowerShell with no profile / hidden window</description>
+
+  <field name="win.eventdata.Image" type="pcre2">(?i)powershell\.exe</field>
+  <field name="win.eventdata.CommandLine" type="pcre2">(?i)-enc(odedcommand)?\b</field>
+  <field name="win.eventdata.CommandLine" type="pcre2">(?i)(-nop\b|-w\s+hidden)</field>
+
+  <mitre>
+    <id>T1059.001</id>
+  </mitre>
+
+  <group>ps.encoded.high_risk</group>
+</rule>
+
+</group>
+

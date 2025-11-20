@@ -1,0 +1,34 @@
+<group name="local.discovery,windows,sysmon">
+
+  <rule id="900050" level="7">
+    <if_group>sysmon_event1</if_group>
+    <field name="win.system.eventID">1</field>
+
+    <field name="win.eventdata.CommandLine" type="pcre2">(?i)\b(net(\s+(user(s)?|localgroup|group))|net1(\s+user(s)?)?|systeminfo|whoami|whoami\s+/groups)\b</field>
+
+    <description>[DISCOVERY] Account/system enumeration command executed</description>
+
+    <mitre>
+      <id>T1087</id>
+      <id>T1033</id>
+    </mitre>
+
+    <group>disc.base</group>
+  </rule>
+
+
+
+  <rule id="900402" level="13" frequency="2" timeframe="90">
+    <if_matched_sid>900050</if_matched_sid>
+    
+    <description>
+      [DISCOVERY] Multiple account/system enumeration commands within - 90s 
+    </description>
+
+    <mitre>
+      <id>T1087</id>
+      <id>T1033</id>
+    </mitre>
+  </rule>
+
+</group>

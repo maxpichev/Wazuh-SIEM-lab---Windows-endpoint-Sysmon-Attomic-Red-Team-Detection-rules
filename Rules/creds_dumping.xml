@@ -1,0 +1,39 @@
+<group name="local.cred_dump,windows,sysmon">
+
+  <rule id="992001" level="7">
+    <if_group>sysmon_event1</if_group>
+    <field name="win.system.eventID">1</field>
+
+    <field name="win.eventdata.Image" type="pcre2">(?i)\\rundll32\.exe</field>
+
+    <field name="win.eventdata.CommandLine" type="pcre2">(?i)comsvcs\.dll.+MiniDump</field>
+
+    <description>[CRED] MiniDump invoked via comsvcs.dll (possible LSASS dump)</description>
+
+    <mitre>
+      <id>T1003</id>      
+      <id>T1003.001</id> 
+    </mitre>
+
+    <group>cred.minidump.base</group>
+  </rule>
+
+
+  <rule id="992002" level="12">
+    <if_sid>992001</if_sid>
+
+    <field name="win.eventdata.CommandLine" type="pcre2">(?i)(lsass\.exe|\blsass\.dmp\b|\\Users\\Public\\|\\Windows\\Temp\\)</field>
+
+    <description>
+      [CRED] Likely LSASS dump via comsvcs.dll MiniDump (rundll32 → comsvcs.dll → LSASS)
+    </description>
+
+    <mitre>
+      <id>T1003</id>
+      <id>T1003.001</id>
+    </mitre>
+
+    <group>cred.minidump.high</group>
+  </rule>
+
+</group>

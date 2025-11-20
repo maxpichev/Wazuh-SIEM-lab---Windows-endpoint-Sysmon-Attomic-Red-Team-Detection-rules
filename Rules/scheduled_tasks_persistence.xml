@@ -1,0 +1,39 @@
+<group name="local.schtasks_persistence,windows,sysmon">
+
+  <rule id="993001" level="7">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^1$</field>
+
+    <field name="win.eventdata.Image" type="pcre2">(?i)schtasks\.exe</field>
+
+    <field name="win.eventdata.CommandLine" type="pcre2">(?i)/create</field>
+
+    <description>[PERSISTENCE] Scheduled Task created via schtasks.exe</description>
+
+    <mitre>
+      <id>T1053</id>       
+      <id>T1053.005</id>   
+    </mitre>
+
+    <group>pers.schtasks.base</group>
+  </rule>
+
+
+  <rule id="993002" level="12">
+    <if_sid>993001</if_sid>
+
+    <field name="win.eventdata.CommandLine" type="pcre2">(?i)(\\Users\\Public\\|\\ProgramData\\|\\Users\\[^\\]+\\AppData\\(Local|Roaming)\\|\.ps1\b|\.vbs\b|\.js\b|\.bat\b|\.cmd\b)</field>
+
+    <description>
+      [PERSISTENCE] Suspicious Scheduled Task: schtasks /create with public/appdata path or script payload
+    </description>
+
+    <mitre>
+      <id>T1053</id>
+      <id>T1053.005</id>
+    </mitre>
+
+    <group>pers.schtasks.suspicious</group>
+  </rule>
+
+</group>

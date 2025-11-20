@@ -1,0 +1,42 @@
+<group name="windows,sysmon,lat.movement">
+
+  <rule id="999001" level="5">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^1$</field>
+        <field name="win.eventdata.Image" type="pcre2">(?i)tscon\.exe</field>
+
+       <field name="win.eventdata.CommandLine" type="pcre2">(?i)tscon?\b</field>
+
+    <group>lat.rdp.tools</group>
+    <description>tscon.exe execution detected</description>
+    <mitre>
+      <id>T1563</id>
+      <id>T1563.002</id>
+    </mitre>
+  </rule>
+
+  <rule id="999002" level="10">
+    <if_sid>999001</if_sid>
+      <field name="win.eventdata.CommandLine" type="pcre2">(?i)\b\d+\s+/dest:2\b</field>
+
+    <description>Potential RDP hijacking (tscon session redirect)</description>
+    <mitre>
+      <id>T1563</id>
+      <id>T1563.002</id>
+    </mitre>
+  </rule>
+
+  <rule id="999003" level="10">
+    <if_sid>999001</if_sid>
+    
+    <field name="win.eventdata.Image" type="pcre2">(?i)tscon\.exe</field>
+    <field name="win.eventdata.CommandLine" type="pcre2">(?i)\b\d+\s+/dest:RDP-Tcp#?\d*\b</field>
+    
+    <description>Potential RDP session hijack via tscon (RDP-Tcp)</description>
+    <mitre>
+      <id>T1563</id>
+      <id>T1563.002</id>
+    </mitre>
+  </rule>
+
+</group>
