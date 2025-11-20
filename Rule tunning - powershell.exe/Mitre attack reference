@@ -1,9 +1,0 @@
-T1059.001
-
-T1059 - Execution 
-- Command and Scripting Interpreter
-
-.001 - Powershell 
-
-So the rule applies to mitre tactic: 
-T1059.001 - "Adversaries may abuse PowerShell commands and scripts for execution"
