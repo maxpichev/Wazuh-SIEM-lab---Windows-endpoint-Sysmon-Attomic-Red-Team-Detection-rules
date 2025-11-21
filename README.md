@@ -17,13 +17,14 @@ I wasn’t trying to build a huge enterprise cluster or “advanced” detection
 I wanted a clear mental model of how SIEM logic connects to the alerts a Tier-1 analyst sees.
 This lab helped me understand that end-to-end.
 
+
 🏛️ Lab Architecture
 
-Windows 10 (Sysmon + Wazuh Agent)
+* Windows 10 (Sysmon + Wazuh Agent)
         ↓
-Host-only Network
+* Host-only Network
         ↓
-Ubuntu 24.04 (Wazuh Manager + Indexer + Dashboard)
+* Ubuntu 24.04 (Wazuh Manager + Indexer + Dashboard)
 
 
 🖥️ Virtualization Setup (VirtualBox)
