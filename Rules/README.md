@@ -34,7 +34,7 @@ Highlights potential lateral movement or privilege escalation attempts.
 ---
 
 ## 4. Credential Dumping via comsvcs.dll MiniDump  
-**File:** `cred_dump_minidump.xml`  
+**File:** `cred_dumping.xml`  
 **MITRE:** T1003.001 (LSASS Memory Dump)  
 Identifies LSASS dumping through `rundll32.exe` invoking `comsvcs.dll, MiniDump`.  
 A refined rule raises severity when dump files are written to suspicious locations  
