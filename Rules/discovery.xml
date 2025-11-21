@@ -1,6 +1,7 @@
 <group name="local.discovery,windows,sysmon">
 
   
+
 <rule id="900049" level="15">
   <if_sid>92031</if_sid>
   <options>no_log</options>
@@ -14,7 +15,7 @@
     <if_group>sysmon_event1</if_group>
     <field name="win.system.eventID">1</field>
 
-    <field name="win.eventdata.CommandLine" type="pcre2">(?i)\b(net(\s+(user(s)?|localgroup|group))|systeminfo|whoami(\s+/groups)?)\b</field>
+    <field name="win.eventdata.CommandLine" type="pcre2">(?i).*\bnet(?:\.exe)?\s+(user(s)?|localgroup|group)|\bsysteminfo\b|\bwhoami(\s+/groups)?\b</field>
 
     <description>[DISCOVERY] Account/system enumeration command executed</description>
 
