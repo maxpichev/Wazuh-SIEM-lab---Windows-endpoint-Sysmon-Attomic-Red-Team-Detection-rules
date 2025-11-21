@@ -103,28 +103,46 @@ To build a clear understanding of:
 * how to tune rules without making them noisy
 
 
-🚀 How to Use This Repo (Run the Lab)
+🚀 How to Use This Repo (Deploy & Test the Rules)
+
+All custom Wazuh rules are developed inside:
+
+   /home/max/rules-custom
 
 
-1. Copy the XML files from Rules/ into your Wazuh manager rules directory:
+Each rule can be deployed into the Wazuh Manager with the helper script:
 
-    /var/ossec/etc/rules/
-
-
-2. Run the deployment script:
-
-   ./deploy_rule.sh
+   ./deploy_rule.sh <rule_filename>
 
 
-3. Restart Wazuh manager:
+Example:
 
-    sudo systemctl restart wazuh-manager
+   cd /home/max/rules-custom
+   ./deploy_rule.sh discovery.xml
 
 
- * Use the commands in AttackSimulation/ to generate alerts (PowerShell encoded, tscon lateral movement, MiniDump, discovery, etc).
+This script:
 
- * View alerts in Wazuh Dashboard → Security Events.
+* Copies the selected rule into the Wazuh rules directory:
 
+   /var/ossec/etc/rules/
+
+
+Sets correct permissions
+
+* Restarts the Wazuh Manager so the rule becomes active
+
+   systemctl restart wazuh-manager
+
+
+* Once the rule is deployed, you can run the test commands from:
+
+   AttackSimulation/
+
+
+* to trigger real alerts (PowerShell encoded commands, discovery, tscon lateral movement, MiniDump, scheduled tasks, etc).
+
+  View alerts in the Wazuh Dashboard → Security Events.
 
 
 This lab is the foundation I built so I can enter a SOC environment already understanding the backend logic of alerts instead of just clicking buttons on a dashboard.
