@@ -1,3 +1,5 @@
+# Scheduled Tasks Persistence (T1053.005)
+
 schtasks /create /sc onlogon /tn "TestTask" /tr "C:\Users\max\payload.ps1"
 
 schtasks /create /sc minute /mo 5 /tn "Updater" /tr "C:\Users\Public\backdoor.exe"
