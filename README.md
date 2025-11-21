@@ -80,7 +80,7 @@ NAT gives both VMs the same outbound identity, so the second adapter is required
 
 * Some simulations were inspired by common MITRE Atomic-style commands.
 
-Used specific MITRE-aligned tests to trigger detections:
+Tests were executed using direct command-line simulations aligned to MITRE ATT&CK techniques:
 
 * encoded PowerShell commands
 
