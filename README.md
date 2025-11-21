@@ -112,6 +112,8 @@ To build a clear understanding of:
 
 
 
+
+
 🚀 How to Use This Repo (Deploy & Test the Rules)
 
 All custom Wazuh rules are developed inside:
@@ -138,7 +140,7 @@ This script:
    /var/ossec/etc/rules/
 
 
-Sets correct permissions
+ Sets correct permissions
 
 * Restarts the Wazuh Manager so the rule becomes active
 
