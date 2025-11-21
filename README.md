@@ -78,7 +78,7 @@ NAT gives both VMs the same outbound identity, so the second adapter is required
 * Primary log source (Event ID 1).
   The SwiftOnSecurity config reduces noise so only meaningful events appear.
 
-* Atomic Red Team (Red Canary)
+* Some simulations were inspired by common MITRE Atomic-style commands.
 
 Used specific MITRE-aligned tests to trigger detections:
 
@@ -91,9 +91,6 @@ Used specific MITRE-aligned tests to trigger detections:
 * credential dumping via comsvcs.dll MiniDump
 
 * scheduled task persistence
-
-ATR helps validate each rule in realistic attacker scenarios.
-
 
 
 🎯 Goal of This Lab
