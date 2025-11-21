@@ -1,0 +1,15 @@
+# Encoded PowerShell launched through cmd.exe (realistic attacker pattern)
+# MITRE: T1059.001 (PowerShell), T1059 (Command and Scripting Interpreter)
+
+# Classic stealth execution:
+cmd.exe /c start powershell.exe -nop -w hidden -enc <base64payload>
+
+# Minimal version:
+start powershell.exe -nop -w hidden -enc <base64payload>
+
+# Example payload (harmless):
+# Base64 decodes to: Write-Host "OK"
+start powershell.exe -nop -w hidden -enc VwByAGkAdABlAC0ASABvAHMAdAAgACcATwBLACcA
+
+# Pattern to test parent-child chain:
+cmd.exe /c "start powershell.exe -nop -w hidden -enc SQBFAFgAIAAiAFQAQQBTAEsAIgA="
