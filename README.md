@@ -36,17 +36,13 @@ I used two VMs:
 1. Ubuntu 24.04 LTS – Wazuh Stack
 
 * Wazuh Manager
-
 * Wazuh Indexer
-
 * Wazuh Dashboard
 
 2. Windows 10 Pro – Endpoint
 
 * Sysmon using SwiftOnSecurity config
-
 * Wazuh agent
-
 * Test scripts (PowerShell payloads, MiniDump tests, scheduled task tests)
 
 
@@ -55,9 +51,7 @@ I used two VMs:
 Ports Used
 
 * 1514/TCP & UDP – agent → manager data channel
-
 * 1515/TCP – agent registration
-
 * 443/HTTPS – dashboard access from the Windows host machine
 
 Routing Setup
@@ -65,7 +59,6 @@ Routing Setup
 Both machines use:
 
 * NAT – for internet access
-
 * Host-only adapter – gives each VM a unique local IP so they can communicate directly
 
 NAT gives both VMs the same outbound identity, so the second adapter is required for proper endpoint → SIEM communication.
@@ -74,22 +67,16 @@ NAT gives both VMs the same outbound identity, so the second adapter is required
 
 🔍 Tools and Data Sources
 * Sysmon (SwiftOnSecurity config)
-
 * Primary log source (Event ID 1).
   The SwiftOnSecurity config reduces noise so only meaningful events appear.
-
 * Some simulations were inspired by common MITRE Atomic-style commands.
 
 Tests were executed using direct command-line simulations aligned to MITRE ATT&CK techniques:
 
 * encoded PowerShell commands
-
 * discovery commands
-
 * lateral movement (tscon)
-
 * credential dumping via comsvcs.dll MiniDump
-
 * scheduled task persistence
 
 
@@ -98,13 +85,9 @@ Tests were executed using direct command-line simulations aligned to MITRE ATT&C
 To build a clear understanding of:
 
 * what attacker activity looks like at the event level
-
 * how detection rules are constructed
-
 * how correlation windows work
-
 * how to investigate alerts as a SOC analyst
-
 * how to tune rules without making them noisy
 
 
