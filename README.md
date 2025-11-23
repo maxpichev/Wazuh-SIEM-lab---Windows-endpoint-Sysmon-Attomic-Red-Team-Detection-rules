@@ -1,6 +1,7 @@
 This project demonstrates how I built practical detections from scratch, tested them against real attacker techniques, triaged the alerts they generated, and alligned the work to the MITRE ATT&CK framework.
 
 
+
 🧪 Wazuh Home Lab – SIEM Detection and Triage Practice
 
 This home lab is built for one purpose: to understand attacker behavior and see how detections actually work behind the scenes.
@@ -101,38 +102,36 @@ To build a clear understanding of:
 
   All custom Wazuh rules are developed inside:
 
-    /home/max/rules-custom
+   `/home/max/rules-custom`
 
 
   Each rule can be deployed into the Wazuh Manager with the helper script:
+  `./deploy_rule.sh <rule_filename>`
 
-    ./deploy_rule.sh <rule_filename>
 
 
   Example:
-
-    cd /home/max/rules-custom
-    ./deploy_rule.sh discovery.xml
-
+    `cd /home/max/rules-custom
+    ./deploy_rule.sh discovery.xml`
 
 
   This script:
 
    * Copies the selected rule into the Wazuh rules directory:
 
-    /var/ossec/etc/rules/
+ `/var/ossec/etc/rules/`
 
 
  Sets correct permissions
 
    * Restarts the Wazuh Manager so the rule becomes active
 
-    systemctl restart wazuh-manager
+   `systemctl restart wazuh-manager`
 
  
    * Once the rule is deployed, you can run the test commands from:
 
-    AttackSimulation/
+   `AttackSimulation/`
 
 
  to trigger real alerts (PowerShell encoded commands, discovery, tscon lateral movement, MiniDump, scheduled tasks, etc).
