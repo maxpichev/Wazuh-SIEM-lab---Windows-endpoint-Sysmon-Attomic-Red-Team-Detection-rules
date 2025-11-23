@@ -18,7 +18,7 @@ I wasn’t trying to build a huge enterprise cluster or “advanced” detection
 * what real alerts look like and how to triage them
 
 I wanted a clear mental model of how SIEM logic connects to the alerts a Tier-1 analyst sees.
-This lab helped me understand that end-to-end.
+This lab is what built that understanding for me.
 
 
 
