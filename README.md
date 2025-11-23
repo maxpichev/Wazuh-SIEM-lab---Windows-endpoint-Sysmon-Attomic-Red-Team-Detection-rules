@@ -140,7 +140,7 @@ To build a clear understanding of:
 
  to trigger real alerts (PowerShell encoded commands, discovery, tscon lateral movement, MiniDump, scheduled tasks, etc).
 
- View alerts in the Wazuh Dashboard → Security Events.
+ * View alerts in the Wazuh Dashboard → Security Events.
 
 
 This lab is the foundation I built so I can enter a SOC environment already understanding the backend logic of alerts instead of just clicking buttons on a dashboard.
